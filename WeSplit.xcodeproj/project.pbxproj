@@ -11,6 +11,7 @@
 		3EF0B77F2AD7EDFC008B3BCD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF0B77E2AD7EDFC008B3BCD /* ContentView.swift */; };
 		3EF0B7812AD7EDFE008B3BCD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3EF0B7802AD7EDFE008B3BCD /* Assets.xcassets */; };
 		3EF0B7842AD7EDFE008B3BCD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3EF0B7832AD7EDFE008B3BCD /* Preview Assets.xcassets */; };
+		3EF0B78B2ADAA107008B3BCD /* Lab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF0B78A2ADAA107008B3BCD /* Lab.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		3EF0B77E2AD7EDFC008B3BCD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3EF0B7802AD7EDFE008B3BCD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3EF0B7832AD7EDFE008B3BCD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		3EF0B78A2ADAA107008B3BCD /* Lab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lab.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +53,9 @@
 		3EF0B77B2AD7EDFC008B3BCD /* WeSplit */ = {
 			isa = PBXGroup;
 			children = (
-				3EF0B77C2AD7EDFC008B3BCD /* WeSplitApp.swift */,
 				3EF0B77E2AD7EDFC008B3BCD /* ContentView.swift */,
+				3EF0B78A2ADAA107008B3BCD /* Lab.swift */,
+				3EF0B77C2AD7EDFC008B3BCD /* WeSplitApp.swift */,
 				3EF0B7802AD7EDFE008B3BCD /* Assets.xcassets */,
 				3EF0B7822AD7EDFE008B3BCD /* Preview Content */,
 			);
@@ -137,6 +140,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3EF0B78B2ADAA107008B3BCD /* Lab.swift in Sources */,
 				3EF0B77F2AD7EDFC008B3BCD /* ContentView.swift in Sources */,
 				3EF0B77D2AD7EDFC008B3BCD /* WeSplitApp.swift in Sources */,
 			);
