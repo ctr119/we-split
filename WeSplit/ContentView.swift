@@ -59,10 +59,12 @@ struct ContentView: View {
         return orderAmount + tipValue
     }
     
+    private var peopleCount: Int {
+        numberOfPeopleIndex + 2
+    }
+    
     private var totalPerPerson: Double {
-        let peopleCount = Double(numberOfPeopleIndex + 2)
-        
-        return grandTotal / peopleCount
+        return grandTotal / Double(peopleCount)
     }
     
     var body: some View {
@@ -95,7 +97,7 @@ struct ContentView: View {
     }
     
     private var peoplePicker: some View {
-        Picker("Number of people", selection: $numberOfPeopleIndex) {
+        Picker("Number of persons", selection: $numberOfPeopleIndex) {
             ForEach(2..<100) {
                 Text("\($0) people")
             }
@@ -127,9 +129,22 @@ struct ContentView: View {
     
     private var summarySection: some View {
         Section {
-            Text(grandTotal,
-                 format: .currency(code: Locale.current.currency?.identifier ?? "EUR"))
+            VStack(alignment: .leading, spacing: 6) {
+                HStack {
+                    Text(grandTotal,
+                         format: .currency(code: Locale.current.currency?.identifier ?? "EUR"))
+                    
+                    Text("- total amount (incl. the tip)")
+                        .font(.subheadline)
+                        .fontWeight(.light)
+                }
+                
+                Text("between \(peopleCount) persons")
+                    .font(.subheadline)
+                    .padding(.leading, 2)
+            }
             .foregroundColor(.gray)
+            .italic()
             
             Text(totalPerPerson,
                  format: .currency(code: Locale.current.currency?.identifier ?? "EUR"))
