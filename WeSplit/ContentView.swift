@@ -26,6 +26,21 @@ struct ContentView: View {
                 return .orange
             }
         }
+        
+        var promotionalText: String {
+            switch self {
+            case .zero:
+                return "Ok... 🥲"
+            case .ten:
+                return "Nice! 🙂"
+            case .fifteen:
+                return "Cool! 😊"
+            case .twenty:
+                return "Great! 😍"
+            case .twentyfive:
+                return "Awesome! 🤩"
+            }
+        }
     }
     
     @FocusState private var amountIsFocused: Bool
@@ -57,14 +72,10 @@ struct ContentView: View {
                     amountTextField
                     peoplePicker
                 }
-                
-                Section("What about a tip?") {
-                    tipPicker
-                }
-                
+                tipSection
                 summarySection
             }
-            .navigationTitle("WeSplit")
+            .navigationTitle("We Split")
             .toolbar {
                 if amountIsFocused {
                     Button("Done") {
@@ -88,6 +99,16 @@ struct ContentView: View {
             ForEach(2..<100) {
                 Text("\($0) people")
             }
+        }
+    }
+    
+    private var tipSection: some View {
+        Section {
+            tipPicker
+        } header: {
+            Text("What about a tip?")
+        } footer: {
+            Text(tipPercentage.promotionalText)
         }
     }
     
