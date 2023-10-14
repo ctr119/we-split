@@ -1,20 +1,44 @@
 import SwiftUI
 
 struct ContentView: View {
+    private enum Tip: Int, CaseIterable {
+        case zero = 0
+        case ten = 10
+        case fifteen = 15
+        case twenty = 20
+        case twentyfive = 25
+        
+        var assignedColor: Color {
+            switch self {
+            case .zero:
+                return .gray
+                
+            case .ten:
+                return .cyan
+                
+            case .fifteen:
+                return .mint
+                
+            case .twenty:
+                return .green
+                
+            case .twentyfive:
+                return .orange
+            }
+        }
+    }
+    
     @FocusState private var amountIsFocused: Bool
     @State private var orderAmount: Double? = nil
     
     @State private var numberOfPeopleIndex: Int = 2
     
-    @State private var tipPercentage: Int = 20
-    private let availableTipPercentages = [
-        0, 10, 15, 20, 25
-    ]
+    @State private var tipPercentage: Tip = .twenty
     
     private var grandTotal: Double {
         guard let orderAmount else { return 0 }
         
-        let tipSelection = Double(tipPercentage)
+        let tipSelection = Double(tipPercentage.rawValue)
         let tipValue = (tipSelection / 100) * orderAmount
         
         return orderAmount + tipValue
@@ -69,11 +93,11 @@ struct ContentView: View {
     
     private var tipPicker: some View {
         Picker("Tip percentage", selection: $tipPercentage) {
-            ForEach(availableTipPercentages, id: \.self) {
-                if $0 == 0 {
+            ForEach(Tip.allCases, id: \.self) {
+                if $0 == .zero {
                     Text("None")
                 } else {
-                    Text("\($0)%")
+                    Text("\($0.rawValue)%")
                 }
             }
         }
@@ -93,14 +117,10 @@ struct ContentView: View {
                 Text("Summary")
             } icon: {
                 Image(systemName: "checkmark.seal")
-                    .foregroundColor(tipPercentage == 0 ? .gray : .green)
+                    .foregroundColor(tipPercentage.assignedColor)
             }
         }
     }
-    
-//    private var colorForTip: Color {
-//
-//    }
 }
 
 struct ContentView_Previews: PreviewProvider {
