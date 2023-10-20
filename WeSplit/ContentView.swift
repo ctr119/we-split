@@ -50,11 +50,15 @@ struct ContentView: View {
     
     @State private var tipPercentage: Tip = .twenty
     
-    private var grandTotal: Double {
+    private var tipValue: Double {
         guard let orderAmount else { return 0 }
         
         let tipSelection = Double(tipPercentage.rawValue)
-        let tipValue = (tipSelection / 100) * orderAmount
+        return (tipSelection / 100) * orderAmount
+    }
+    
+    private var grandTotal: Double {
+        guard let orderAmount else { return 0 }
         
         return orderAmount + tipValue
     }
@@ -134,9 +138,7 @@ struct ContentView: View {
                     Text(grandTotal,
                          format: .currency(code: Locale.current.currency?.identifier ?? "EUR"))
                     
-                    Text("- total amount (incl. the tip)")
-                        .font(.subheadline)
-                        .fontWeight(.light)
+                    grandTotalInfoText
                 }
                 
                 Text("between \(peopleCount) persons")
@@ -156,6 +158,18 @@ struct ContentView: View {
                     .foregroundColor(tipPercentage.assignedColor)
             }
         }
+    }
+    
+    private var grandTotalInfoText: some View {
+        HStack(spacing: 0) {
+            Text("- total amount (incl. the tip: ")
+            Text(tipValue,
+                 format: .currency(code: Locale.current.currency?.identifier ?? "EUR"))
+            .foregroundColor(tipValue > 0 ? tipPercentage.assignedColor : Tip.zero.assignedColor)
+            Text(")")
+        }
+        .font(.subheadline)
+        .fontWeight(.light)
     }
 }
 
